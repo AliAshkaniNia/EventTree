@@ -1,0 +1,26 @@
+Checks: >
+  -*,
+  bugprone-*,
+  performance-*,
+  readability-*,
+  modernize-*,
+  -modernize-use-trailing-return-type,
+  cppcoreguidelines-*,
+  clang-analyzer-*,
+  portability-*,
+  misc-*,
+  google-*,
+  hicpp-*,
+  llvm-*
+  mpi-*,
+  fuchsia-*,
+  zircon-*,
+  android-*,
+  tensorflow-*,
+  abseil-*,
+  cert-*,
+  bsl-*
+
+WarningsAsErrors: '*'
+FormatStyle: file
+UseColor: true
