@@ -13,3 +13,8 @@ Another important topic to mention is naming conventions. Here are the naming co
 - class names: `PascalCase`
 - namespaces: `camelCase`
 
+# Using `eventpp` library
+
+The crux of this problem lies in implementing a multi-producer, multi-consumer event dispatching system. Given that this is a common functionality, I conducted a search for existing libraries to avoid reinventing the wheel unnecessarily when developing a new library. To structure the overall program, I opted for an available library called [eventpp](https://github.com/wqking/eventpp/). In an effort to adhere to SOLID principles, I designed several interfaces to create a loosely coupled system. Following this phase, I intend to construct a minimal alternative to `eventpp`, focusing on both performance and fairness.
+
+
