@@ -57,3 +57,23 @@ add_clang_format(SpecialQueueTest TRUE )
 
 target_link_libraries(SpecialQueueTest PRIVATE TBB::tbb)
 
+setup_benchmark()
+
+function(create_benchmark target_name target_source)
+    add_executable(${target_name} ${target_source})
+    add_clang_format(${target_name} TRUE )
+    target_include_directories(${target_name} PRIVATE 
+        include/
+        ${eventpp_SOURCE_DIR}/include
+        ${moodycamel_concurrentqueue_SOURCE_DIR}
+        )
+
+    target_link_libraries(${target_name} PRIVATE TBB::tbb)
+    target_link_libraries(${target_name} PRIVATE benchmark::benchmark benchmark::benchmark_main)
+
+endfunction()
+
+create_benchmark(bm_enqueue benchmarks/bm_enqueue.cpp)
+create_benchmark(bm_dispatch benchmarks/bm_dispatch.cpp)
+create_benchmark(bm_fairness benchmarks/bm_fairness.cpp)
+
