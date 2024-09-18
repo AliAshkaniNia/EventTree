@@ -9,14 +9,17 @@
 #include "events/Joy.h"
 
 void eventTree::eventProducers::Anahita::produceEvents() {
+    auto emitter = getEventEmitter();
+    if (emitter == nullptr) {
+        return;
+    }
     for (int i = 0; i < 5; ++i) {  // NOLINT
-        getEventEmitter()->emitEvent(
-            events::EventType::Blessing,
-            std::make_shared<events::Blessing>("Iran"));
+        emitter->emitEvent(events::EventType::Blessing,
+                           std::make_shared<events::Blessing>("Iran"));
         std::this_thread::sleep_for(std::chrono::milliseconds(10));  // NOLINT
 
-        getEventEmitter()->emitEvent(events::EventType::Joy,
-                                     std::make_shared<events::Joy>("Iraq"));
+        emitter->emitEvent(events::EventType::Joy,
+                           std::make_shared<events::Joy>("Iraq"));
         std::this_thread::sleep_for(std::chrono::milliseconds(50));  // NOLINT
     }
 }
