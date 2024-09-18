@@ -263,13 +263,18 @@ endfunction()
 function(setup_gtest)
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
-    setup_library(GTest 
-                  https://github.com/google/googletest.git 
-                  v1.14.0)
-
-    setup_library(GMock 
-                    https://github.com/google/googletest.git 
-                    v1.14.0)
+    # Try to find GTest and GMock packages
+    find_package(GTest QUIET)
+    find_package(GMock QUIET)
+    
+    if(GTest_FOUND AND GMock_FOUND)
+        message(STATUS "GTest and GMock found on the system. Using the installed version.")
+    else()
+        message(STATUS "Either GTest or GMock not found on the system. Fetching GTest...")
+        setup_library(GTest 
+                      https://github.com/google/googletest.git 
+                      v1.14.0)
+    endif()
 
     enable_testing()
     include(GoogleTest)

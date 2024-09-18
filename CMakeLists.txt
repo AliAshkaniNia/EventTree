@@ -50,3 +50,10 @@ setup_library(
 )
 
 target_include_directories(EventTree PRIVATE ${moodycamel_concurrentqueue_SOURCE_DIR})
+
+setup_gtest()
+add_gtest(SpecialQueueTest tests/SpecialEventQueueTest.cpp "include/" )
+add_clang_format(SpecialQueueTest TRUE )
+
+target_link_libraries(SpecialQueueTest PRIVATE TBB::tbb)
+
