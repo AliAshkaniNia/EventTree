@@ -24,7 +24,7 @@ class EventppHub : public IEventHub {
    private:
     /** @brief Type alias for the event queue used internally. */
     using EventQueue =
-        eventpp::EventQueue<events::EventType, void(const events::EventPtr&),
+        eventpp::EventQueue<events::EventType, void(events::EventPtr),
                             events::EventPolicy>;
 
     EventQueue queue; /**< The event queue for storing and processing events. */
@@ -56,18 +56,18 @@ class EventppHub : public IEventHub {
 
     /**
      * @brief Emits an event to be processed by registered handlers.
+     * @param type The type of event to handle.
      * @param event Shared pointer to the event to be emitted.
      */
-    void emitEvent(const events::EventPtr& event) override;
+    void emitEvent(events::EventType type, events::EventPtr event) override;
 
     /**
      * @brief Registers a handler function for a specific event type.
      * @param type The type of event to handle.
      * @param func The handler function to be called when the event occurs.
      */
-    void registerHandler(
-        events::EventType type,
-        std::function<void(const events::EventPtr&)> func) override;
+    void registerHandler(events::EventType type,
+                         std::function<void(events::EventPtr)> func) override;
 
     // Special constructors to comply with "rule of 5"
     EventppHub(const EventppHub&) = delete;

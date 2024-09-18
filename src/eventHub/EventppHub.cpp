@@ -24,12 +24,16 @@ void eventTree::eventHubs::EventppHub::dispatchEvents() {
     }
 }
 
-void eventTree::eventHubs::EventppHub::emitEvent(
-    const events::EventPtr& event) {
+void eventTree::eventHubs::EventppHub::emitEvent(events::EventType type,
+                                                 events::EventPtr event) {
+    (void)type;  // To suppress warnings.
+                 // eventpp uses the policy to detect the
+                 // event type and does not need this variable
+
     queue.enqueue(event);
 }
 
 void eventTree::eventHubs::EventppHub::registerHandler(
-    events::EventType type, std::function<void(const events::EventPtr&)> func) {
+    events::EventType type, std::function<void(events::EventPtr)> func) {
     queue.appendListener(type, func);
 }

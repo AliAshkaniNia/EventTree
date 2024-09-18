@@ -30,23 +30,23 @@ int main() {
 
     auto hub = std::make_shared<EventppHub>();
 
-    hub->registerHandler(EventType::Blessing, [](const EventPtr& event) {
-        const auto blessing = std::static_pointer_cast<Blessing>(event);
+    hub->registerHandler(EventType::Blessing, [](EventPtr event) {  // NOLINT
+        auto blessing = std::static_pointer_cast<Blessing>(event);
         std::cout << "Blessing received for: " << blessing->get_target_land()
                   << "\n";
     });
-    hub->registerHandler(EventType::Joy, [](const EventPtr& event) {
-        const auto joy = std::static_pointer_cast<Joy>(event);
+    hub->registerHandler(EventType::Joy, [](EventPtr event) {  // NOLINT
+        auto joy = std::static_pointer_cast<Joy>(event);
         std::cout << "Joy spread over: " << joy->get_target_land() << "\n";
     });
 
-    hub->registerHandler(EventType::Chaos, [](const EventPtr& event) {
-        const auto chaos = std::static_pointer_cast<Chaos>(event);
+    hub->registerHandler(EventType::Chaos, [](EventPtr event) {  // NOLINT
+        auto chaos = std::static_pointer_cast<Chaos>(event);
         std::cout << "Chaos unleashed in: " << chaos->get_target_land() << "\n";
     });
 
-    hub->registerHandler(EventType::Flood, [](const EventPtr& event) {
-        const auto flood = std::static_pointer_cast<Flood>(event);
+    hub->registerHandler(EventType::Flood, [](EventPtr event) {  // NOLINT
+        auto flood = std::static_pointer_cast<Flood>(event);
         std::cout << "Flood affecting: " << flood->get_target_land() << "\n";
     });
 

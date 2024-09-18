@@ -26,9 +26,10 @@ class IEventHub {
 
     /**
      * @brief Pure virtual function to emit an event.
+     * @param type The type of event to handle.
      * @param event Shared pointer to the event to be emitted.
      */
-    virtual void emitEvent(const events::EventPtr& event) = 0;
+    virtual void emitEvent(events::EventType type, events::EventPtr event) = 0;
 
     /**
      * @brief Pure virtual function to register an event handler.
@@ -36,8 +37,7 @@ class IEventHub {
      * @param func The handler function to be called when the event occurs.
      */
     virtual void registerHandler(
-        events::EventType type,
-        std::function<void(const events::EventPtr&)> func) = 0;
+        events::EventType type, std::function<void(events::EventPtr)> func) = 0;
 
     // Special constructors to comply with "rule of 5"
 
