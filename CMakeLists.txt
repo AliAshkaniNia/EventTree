@@ -73,7 +73,7 @@ function(create_benchmark target_name target_source)
 
 endfunction()
 
-create_benchmark(bm_enqueue benchmarks/bm_enqueue.cpp)
-create_benchmark(bm_dispatch benchmarks/bm_dispatch.cpp)
-create_benchmark(bm_fairness benchmarks/bm_fairness.cpp)
+create_benchmark(BmEnqueue benchmarks/BmEnqueue.cpp)
+create_benchmark(BmDispatch benchmarks/BmDispatch.cpp)
+create_benchmark(BmFairness benchmarks/BmFairness.cpp)
 

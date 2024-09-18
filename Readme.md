@@ -49,9 +49,9 @@ Testcases to test `SpecialEventQueue`, the implemented event queue library, can 
 There are 3 benchmarks in this project. You can run them with:
 
 ```bash
-./bm_dispatch
-./bm_enqueue
-./bm_fairness
+./BmDispatch
+./BmEnqueue
+./BmFairness
 ```
 
 ### Static Analysis 
