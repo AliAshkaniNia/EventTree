@@ -4,6 +4,7 @@
 #include <thread>
 
 #include "eventHub/EventppHub.h"
+#include "eventHub/SpecialHub.h"
 #include "eventProducers/Ahriman.h"
 #include "eventProducers/Anahita.h"
 #include "events/Blessing.h"
@@ -14,6 +15,8 @@
 
 int main() {
     using eventTree::eventHubs::EventppHub;
+    using eventTree::eventHubs::SpecialHub;
+
     using eventTree::events::EventPtr;
 
     using eventTree::eventProducers::Ahriman;
@@ -28,7 +31,8 @@ int main() {
     using eventTree::events::Flood;
     using eventTree::events::Joy;
 
-    auto hub = std::make_shared<EventppHub>();
+    // auto hub = std::make_shared<EventppHub>();
+    auto hub = std::make_shared<SpecialHub>();
 
     hub->registerHandler(EventType::Blessing, [](EventPtr event) {  // NOLINT
         auto blessing = std::static_pointer_cast<Blessing>(event);
