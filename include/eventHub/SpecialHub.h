@@ -6,7 +6,8 @@
 #include <thread>
 
 #include "IEventHub.h"
-#include "SpecialEventQueue/Queues/NaiveQeue.h"
+#include "SpecialEventQueue/Queues/MoodycamelQueue.h"  // NOLINT
+#include "SpecialEventQueue/Queues/NaiveQeue.h"        // NOLINT
 #include "SpecialEventQueue/SpecialEventQueue.h"
 #include "events/Event.h"
 
@@ -24,9 +25,10 @@ namespace eventTree::eventHubs {
 class SpecialHub : public IEventHub {
    private:
     /** @brief Type alias for the event queue used internally. */
-    using EventQueue = SpecialEventQueue<events::EventType,
-                                         std::function<void(events::EventPtr)>,
-                                         queues::NaiveQueue<events::EventPtr> >;
+    using EventQueue =
+        SpecialEventQueue<events::EventType,
+                          std::function<void(events::EventPtr)>,
+                          queues::MoodycamelQueue<events::EventPtr> >;
 
     EventQueue queue; /**< The event queue for storing and processing events. */
     std::thread dispatch_thread;     /**< Thread for dispatching events. */

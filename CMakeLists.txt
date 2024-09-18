@@ -43,3 +43,10 @@ setup_library(
 
 target_link_libraries(EventTree PRIVATE TBB::tbb)
 
+setup_library(
+    moodycamel_concurrentqueue 
+    https://github.com/cameron314/concurrentqueue.git 
+    master
+)
+
+target_include_directories(EventTree PRIVATE ${moodycamel_concurrentqueue_SOURCE_DIR})
