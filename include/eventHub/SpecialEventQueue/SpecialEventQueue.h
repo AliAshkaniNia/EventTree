@@ -132,6 +132,14 @@ class SpecialEventQueue {
      * starve.
      *
      * @warning Assumes 'queues' and 'handlers' never delete an entry.
+     *
+     * @note This function may not always process an event in a single call.
+     * It uses a round-robin method to select the target queue, and if that
+     * queue is empty, it returns without checking subsequent queues. This
+     * design choice was made to maintain code simplicity, as this method is
+     * typically called in a loop within a thread. Occasional non-processing
+     * iterations do not significantly impact overall performance and are
+     * expected as part of normal operation.
      */
     void processOne() {
         auto eventTypeCount = eventTypes.size();
