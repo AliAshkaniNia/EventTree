@@ -55,13 +55,13 @@ endfunction()
 function(add_clang_tidy target auto_tidy)
     # Check if CMAKE_EXPORT_COMPILE_COMMANDS is set
     if(NOT CMAKE_EXPORT_COMPILE_COMMANDS)
-        message(FATAL_ERROR "CMAKE_EXPORT_COMPILE_COMMANDS is not set. Please set it to ON for clang-tidy to work properly.")
+        message(WARNING "CMAKE_EXPORT_COMPILE_COMMANDS is not set. Please set it to ON for clang-tidy to work properly.")
         return()
     endif()
 
     find_program(CLANGTIDY NAMES clang-tidy clang-tidy-18 clang-tidy-17 clang-tidy-16 clang-tidy-15 clang-tidy-14 clang-tidy-13 clang-tidy-12 clang-tidy-11 clang-tidy-10)
     if(NOT CLANGTIDY OR CLANGTIDY MATCHES "NOTFOUND")
-        message(FATAL_ERROR "clang-tidy was not found. Tidy checks will be skipped.")
+        message(WARNING "clang-tidy was not found. Tidy checks will be skipped.")
         return()
     endif()
 
@@ -115,7 +115,7 @@ function(add_clang_format target auto_format)
 
     find_program(CLANGFORMAT NAMES clang-format)
     if(NOT CLANGFORMAT OR CLANGFORMAT MATCHES "NOTFOUND")
-        message(FATAL_ERROR "clang-format was not found!")
+        message(WARNING "clang-format was not found!")
         return()  # Although not necessary after a fatal error, added for clarity
     endif()
 
